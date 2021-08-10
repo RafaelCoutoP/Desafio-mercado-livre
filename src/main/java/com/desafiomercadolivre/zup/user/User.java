@@ -13,6 +13,7 @@ public class User {
     private Long id;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant moment;
+    @Column(unique = true)
     private String login;
     private String password;
 

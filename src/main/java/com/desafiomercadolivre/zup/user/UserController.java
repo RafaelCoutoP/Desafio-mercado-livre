@@ -19,6 +19,9 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserRequest> insertUser(@RequestBody @Valid UserRequest request){
         User user = request.toModel();
+        if(userRepository.existsByLogin(request.getLogin())){
+            return  ResponseEntity.badRequest().build();
+        }
         userRepository.save(user);
         return ResponseEntity.ok().build();
     }
