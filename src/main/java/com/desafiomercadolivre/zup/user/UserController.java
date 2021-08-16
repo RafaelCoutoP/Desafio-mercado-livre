@@ -1,7 +1,9 @@
 package com.desafiomercadolivre.zup.user;
 
+import com.desafiomercadolivre.zup.config.ConfigApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,8 @@ import javax.validation.Valid;
 public class UserController {
 
     @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
     private UserRepository userRepository;
 
     @PostMapping
@@ -22,6 +26,7 @@ public class UserController {
         if(userRepository.existsByLogin(request.getLogin())){
             return  ResponseEntity.badRequest().build();
         }
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         userRepository.save(user);
         return ResponseEntity.ok().build();
     }

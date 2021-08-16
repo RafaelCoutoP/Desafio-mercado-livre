@@ -1,0 +1,1 @@
+INSERT INTO tb_user(moment, login, password) VALUES(NOW(), 'test@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');

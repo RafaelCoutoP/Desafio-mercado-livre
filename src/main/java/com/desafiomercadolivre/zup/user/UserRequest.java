@@ -28,6 +28,7 @@ public class UserRequest {
     }
 
     public User toModel() {
-        return new User(this.login, this.password = new BCryptPasswordEncoder().encode(password));
+
+        return new User(this.login, this.password);
     }
 }
