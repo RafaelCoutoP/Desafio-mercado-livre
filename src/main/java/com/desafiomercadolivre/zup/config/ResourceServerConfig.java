@@ -16,7 +16,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     private JwtTokenStore tokenStore;
 
     private static final String[] PUBLIC = { "/oauth/token","/users/**","/categories/**" };
-    
+
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources.tokenStore(tokenStore);
